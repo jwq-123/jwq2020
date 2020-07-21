@@ -6,7 +6,7 @@ public class User {
     private String password;
     private String school;
     private int tel;
-    private String position;
+    private Object position;
 
 
     public User(String name, String password) {
@@ -30,7 +30,7 @@ public class User {
         this.tel = tel;
     }
 
-    public User(String name, String password, String school, int tel, String position) {
+    public User(String name, String password, String school, int tel, Object position) {
         super();
         this.name = name;
         this.password = password;
@@ -75,7 +75,7 @@ public class User {
         return tel;
     }
 
-    public String getPosition() {
+    public Object getPosition() {
         return position;
     }
 }

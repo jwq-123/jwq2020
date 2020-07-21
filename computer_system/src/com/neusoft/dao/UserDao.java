@@ -29,7 +29,7 @@ public class UserDao {
             ps.setString(2,user.getPassword());
             ps.setString(3,user.getSchool());
             ps.setInt(4,user.getTel());
-            ps.setString(5,user.getPosition());
+            ps.setString(5, String.valueOf(user.getPosition()));
             return ps.executeUpdate();
     }
 }

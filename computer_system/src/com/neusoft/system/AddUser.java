@@ -88,11 +88,18 @@ public class AddUser extends JFrame {
         schoolTxt.setBounds(180,230,200,30);
         contentPane.add(schoolTxt);
 
-        positionTxt = new JTextField();
+       /* positionTxt = new JTextField();
         positionTxt.setColumns(10);
         positionTxt.setBounds(180,280,200,30);
-        contentPane.add(positionTxt);
+        contentPane.add(positionTxt);*/
 
+        JComboBox positionTxt=new JComboBox();
+        positionTxt.addItem("请选择职位：");
+        positionTxt.addItem("教师");
+        positionTxt.addItem("学生");
+        positionTxt.setBounds(180,280,200,30);
+        contentPane.add(positionTxt);
+        //注册
         JButton button=new JButton("注册");
         button.addActionListener(new ActionListener() {
             @Override
@@ -101,10 +108,11 @@ public class AddUser extends JFrame {
                 String password=new String(passwordTxt.getPassword());
                 String school=schoolTxt.getText();
                 int tel= Integer.parseInt(telTxt.getText());
-                String position=positionTxt.getText();
+                Object position=positionTxt.getSelectedItem();
 
                 if(StringUtil.isEmpty((nameTxt.getText()))){
                     JOptionPane.showMessageDialog(null,"账号不能为空");
+                    reset();
                 }
                 User user=new User(name,password,school,tel,position);
                 Connection con=null;
@@ -114,10 +122,12 @@ public class AddUser extends JFrame {
                     int a=userDao.add(con,user);
                     if (a == 1) {
                         JOptionPane.showMessageDialog(null, "注册成功");
+                        setVisible(false);
                     }
 
                     if (a == 0) {
                         JOptionPane.showMessageDialog(null, "注册失败");
+                        reset();
                     }
                 } catch (Exception e2) {
                 }finally {
@@ -135,6 +145,13 @@ public class AddUser extends JFrame {
         contentPane.add(button);
 
         }
+    void reset() {
+        this.nameTxt.setText(null);
+        this.passwordTxt.setText(null);
+        this.telTxt.setText(null);
+        this.schoolTxt.setText(null);
+        this.positionTxt.setText(null);
+    }
     }
 
 
