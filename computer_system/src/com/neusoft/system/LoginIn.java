@@ -7,6 +7,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.Connection;
 
 import static com.sun.deploy.uitoolkit.ToolkitStore.dispose;
@@ -34,7 +36,7 @@ public class LoginIn {
         container.add(passwordTxt);
 
         JButton loginJButton=new JButton("登录");
-        loginJButton.setBounds(190,150,90,30);
+        loginJButton.setBounds(140,150,90,30);
         container.add(loginJButton);
         loginJButton.addActionListener(new ActionListener() {
             @Override
@@ -64,7 +66,7 @@ public class LoginIn {
         loginJButton.setIcon(new ImageIcon(LoginIn.class.getResource("/images/login.png")));
 
         JButton register=new JButton("注册");
-        register.setBounds(320,150,90,30);
+        register.setBounds(240,150,90,30);
         container.add(register);
         register.addActionListener(new ActionListener() {
             @Override
@@ -74,6 +76,19 @@ public class LoginIn {
             }
         });
         register.setIcon(new ImageIcon(LoginIn.class.getResource("/images/add.png")));
+
+        JButton admin = new JButton("管理员登录");
+        admin.setBounds(340,150, 140, 30);
+        container.add(admin);
+        admin.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                jFrame.setVisible(false);
+                AdminLogin admin=new AdminLogin();
+                admin.setVisible(true);
+            }
+        });
+        admin.setIcon(new ImageIcon(LoginIn.class.getResource("/images/1.png")));
 
         jFrame.setBounds(600,300,600,300);
         jFrame.getContentPane().setBackground(Color.lightGray);
